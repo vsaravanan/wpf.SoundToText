@@ -1,0 +1,24 @@
+﻿
+{
+  "results": [
+    {
+      "RecordingDate": "2000-12-15T22:11:03",
+      "Duration": 5,
+      "Title": "First recording",
+      "Attendees": 3
+    },
+    {
+      "RecordingDate": "2000-12-16T22:11:03",
+      "Duration": 15,
+      "Title": "Second recording",
+      "Attendees": 4
+    },
+    {
+      "RecordingDate": "2000-12-17T22:11:03",
+      "Duration": 25,
+      "Title": "Third recording",
+      "Attendees": 5
+    }
+
+  ]
+}
