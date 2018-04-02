@@ -17,6 +17,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UIControls;
+using System.Data.SQLite;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace SoundToText
 {
@@ -42,18 +45,35 @@ namespace SoundToText
 
             dgSpeakers.ItemsSource = cvResults;
 
+            using (SQLiteConnection cn = new SQLiteConnection("Data Source=Resources/asr.db"))
+            {
+                string sql = "SELECT * FROM Topic";
+                using (SQLiteCommand cmd = new SQLiteCommand(sql, cn))
+                {
+                    using (SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter(cmd))
+                    {
+                        DataSet dataSet = new DataSet();
+                        dataAdapter.Fill(dataSet);
+                        dgTopic.ItemsSource = dataSet.Tables[0].DefaultView;
 
+                    }
 
-
+                }
+            }
         }
 
         private void OnPause(object sender, RoutedEventArgs e)
         {
             speakers.list[0].Status = "offline";
-              var tmp  = JsonConvert.SerializeObject(speakers.list[0]);
+            var tmp  = JsonConvert.SerializeObject(speakers.list[0]);
             var tmp2 = JsonConvert.DeserializeObject<Speaker>(tmp);
             speakers.list[0] = tmp2;
             speakers.list.Add(new Speaker() { Mic = "5", Name = "User5", Status = "online" });
+
+        }
+
+        private void dgTopic_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        {
 
         }
     }

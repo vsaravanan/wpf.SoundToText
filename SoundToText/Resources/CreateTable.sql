@@ -1,0 +1,11 @@
+﻿DROP TABLE Topic;
+
+CREATE TABLE Topic (
+  Id INTEGER NULL
+, UserName TEXT(100) NULL
+, RecordDt TEXT(25) NULL
+, BegSec TEXT(15)  NULL
+, EndSec TEXT(15)  NULL
+, Message TEXT(4000) NULL
+, CONSTRAINT PK_Topic PRIMARY KEY (Id)
+);

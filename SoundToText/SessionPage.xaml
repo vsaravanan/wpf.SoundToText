@@ -85,8 +85,8 @@
             <Image Source="Resources/stop.png" />
             <TextBlock Text="Stop" VerticalAlignment="Bottom" />
         </StackPanel>-->
-        <DataGrid Name="dgSpeakers" Grid.Column="4" HorizontalAlignment="Left" Height="300"  
-                  Grid.Row="1" VerticalAlignment="Top" Width="230" 
+        <DataGrid Name="dgSpeakers" Grid.Column="4" HorizontalAlignment="Center" Height="400"  
+                  Grid.Row="0" Grid.RowSpan="3" VerticalAlignment="Top" Width="230" 
                   Background="#FF3F9DD6" Foreground="#FFA8E4E4" FontSize="16" ColumnWidth="180" 
                    IsReadOnly="True"  RowHeaderWidth="0" AutoGenerateColumns="False">
             <DataGrid.Columns>
@@ -124,8 +124,55 @@
             </DataGrid.Resources>
 
         </DataGrid>
-        <Slider Grid.Column="3" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Bottom"  Width="440"/>
-  
+        <Slider Grid.Column="3" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"  Width="440"/>
+        <DataGrid Name="dgTopic" Height="300" Width="1000" Grid.Column="1" Grid.Row="4"  Grid.ColumnSpan="5"  
+                  HorizontalAlignment="Left" VerticalAlignment="Top"  
+                  Background="#FF3F9DD6" Foreground="#FFA8E4E4" FontSize="16" 
+                     RowHeaderWidth="0" AutoGenerateColumns="False" ColumnHeaderHeight="40" RowEditEnding="dgTopic_RowEditEnding">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Speaker" Binding="{Binding UserName}" Width="70" IsReadOnly="True" />
+                <DataGridTextColumn Header="Recording date" Binding="{Binding RecordDt}" Width="120" IsReadOnly="True" />
+                <DataGridTextColumn Header="Time start" Binding="{Binding BegSec}" Width="100" IsReadOnly="True" />
+                <DataGridTextColumn Header="Time end" Binding="{Binding EndSec}" Width="100" IsReadOnly="True" />
+                <DataGridTextColumn Header="Message" Binding="{Binding Message, Mode=TwoWay}"  Width="600"  >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.Margin" Value="10,0,0,0" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+
+            </DataGrid.Columns>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="#FF3F9DD6" />
+                    <Setter Property="Foreground" Value="Black" />
+
+                </Style>
+            </DataGrid.RowStyle>
+
+            <DataGrid.Resources>
+
+
+
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="Blue" />
+                    <Setter Property="VerticalAlignment" Value="Bottom" />
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding}"></TextBlock>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+
+            </DataGrid.Resources>
+
+        </DataGrid>
 
 
     </Grid>
