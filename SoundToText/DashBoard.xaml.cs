@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -99,17 +100,21 @@ namespace SoundToText
                 };
             }
 
-            //m_txtSearchContent.Text = "Keyword: " + searchArgs.Keyword + sections;
+
+        }
+
+        private void WebPageClick(object sender, RoutedEventArgs e)
+        {
+            Hyperlink link = e.OriginalSource as Hyperlink;
+            //Process.Start(link.NavigateUri.AbsoluteUri);
+            string newLink = "SessionPage.xaml#" + link.NavigateUri.OriginalString;
+            NavigationService navService = NavigationService.GetNavigationService(this);
+            navService.Navigate(new System.Uri(newLink, UriKind.RelativeOrAbsolute));
+
         }
 
     }
 
-    //public bool TextFilter (object o)
-    //{
-    //    Result r = (o as Result);
-    //    if (r == null)
-    //        return false;
 
-    //}
 
 }

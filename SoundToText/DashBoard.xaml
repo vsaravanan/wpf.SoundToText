@@ -20,6 +20,14 @@
     
     
     <Grid>
+        <Grid.Resources>
+            <DataTemplate x:Key="customDateTemplate">
+                <StackPanel>
+                    <TextBlock Text="{Binding RecordingDate, StringFormat={}{0:dd-MMM-yy HH:mm}}" />
+                </StackPanel>
+            </DataTemplate>
+        </Grid.Resources>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width=".25*" />
             <ColumnDefinition Width=".25*" />
@@ -44,9 +52,34 @@
                                    
                                      />
         <DataGrid Name="dgResult" Grid.Column="1" HorizontalAlignment="Left" Height="300"  
-                  Grid.Row="4" VerticalAlignment="Top" Width="800" Grid.ColumnSpan="4" 
+                  Grid.Row="4" VerticalAlignment="Top" Width="655" Grid.ColumnSpan="4" 
                   Background="#FF3F9DD6" Foreground="#FFA8E4E4" FontSize="16" ColumnWidth="180" 
-                   IsReadOnly="True"  RowHeaderWidth="0">
+                   IsReadOnly="True"  RowHeaderWidth="0" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+
+                <DataGridTemplateColumn Header="Recording Date" CellTemplate="{StaticResource customDateTemplate}" Width="150" IsReadOnly="True" />
+                <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="100" IsReadOnly="True" />
+                <DataGridTextColumn Header="Attendees" Binding="{Binding Attendees}" Width="100" IsReadOnly="True" />
+                <DataGridHyperlinkColumn Header="Title" Binding="{Binding Url}" ContentBinding="{Binding Title}" Width="300" >
+                    <DataGridHyperlinkColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Style.Resources>
+                                <Style TargetType="Hyperlink">
+                                    <Setter Property="Foreground" Value="DarkBlue" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                </Style>
+                            </Style.Resources>
+                        </Style>
+                    </DataGridHyperlinkColumn.CellStyle>
+                    <DataGridHyperlinkColumn.ElementStyle>
+                        <Style>
+                            <EventSetter Event="Hyperlink.Click" Handler="WebPageClick" />
+                        </Style>
+                    </DataGridHyperlinkColumn.ElementStyle>
+                </DataGridHyperlinkColumn>
+
+
+            </DataGrid.Columns>
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
                     <Setter Property="Background" Value="#FF3F9DD6" />

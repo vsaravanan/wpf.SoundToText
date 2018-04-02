@@ -1,0 +1,26 @@
+﻿
+{
+  "list": [
+    {
+      "Mic": "1",
+      "Name": "User1",
+      "Status": "online"
+    },
+    {
+      "Mic": "2",
+      "Name": "User2",
+      "Status": "online"
+    },
+    {
+      "Mic": "3",
+      "Name": "User3",
+      "Status": "offline"
+    },
+    {
+      "Mic": "4",
+      "Name": "User4",
+      "Status": "offline"
+    }
+  ]
+}
+

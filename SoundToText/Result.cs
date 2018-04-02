@@ -22,6 +22,9 @@ namespace SoundToText
         [JsonProperty("Attendees")]
         public int Attendees { get; set; }
 
+        [JsonProperty("Url")]
+        public string Url { get; set; }
+
 
     }
 }
